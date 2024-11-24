@@ -6,6 +6,7 @@ TagManager:
   tags:
   - player2
   - player1
+  - road
   layers:
   - Default
   - TransparentFX

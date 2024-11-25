@@ -3,61 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+
 public class FinishLineTrigger : MonoBehaviour
 {
-
     public TMP_Text winText;
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+        // Aquí puedes inicializar si lo necesitas
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Si es necesario agregar lógica en el Update, puedes hacerlo aquí
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        
-        if (other.CompareTag("player1")) 
+        // Verifica si el jugador 1 cruzó la meta
+        if (other.CompareTag("player1"))
         {
-            Debug.Log("¡Has cruzado la línea de meta!");
+            Debug.Log("¡El jugador 1 ha cruzado la línea de meta!");
 
             PlayerControler playerController = other.GetComponent<PlayerControler>();
             if (playerController != null)
             {
-                playerController.enabled = false;
-                winText.gameObject.SetActive(true);  // Muestra el texto
-                winText.text = "Nivel #1 Completado";  // Cambia el mensaje
+                playerController.enabled = false; // Desactiva el control del jugador
+                winText.gameObject.SetActive(true); // Muestra el texto
+                winText.text = "Nivel #1 Completado"; // Muestra el mensaje adecuado
             }
 
+            // Espera un tiempo y luego carga la escena correspondiente para el jugador 1
+            StartCoroutine(WaitAndLoadScene("Prototype 2"));
+        }
 
-            StartCoroutine(WaitAndLoadScene());
+        // Verifica si el jugador 2 cruzó la meta
+        if (other.CompareTag("player2"))
+        {
+            Debug.Log("¡El jugador 2 ha cruzado la línea de meta!");
 
-
-
-            /*if (winText != null)
+            PlayerControler playerController = other.GetComponent<PlayerControler>();
+            if (playerController != null)
             {
-                winText.gameObject.SetActive(true);  // Muestra el texto
-                winText.text = "Nivel #1 Completado";  // Cambia el mensaje
+                playerController.enabled = false; // Desactiva el control del jugador
+                winText.gameObject.SetActive(true); // Muestra el texto
+                winText.text = "Nivel #2 Completado"; // Muestra el mensaje adecuado
             }
 
-            // Detener el juego (opcional)
-            Time.timeScale = 0f;  // Detiene todo el juego (si lo deseas)
-            */
+            // Espera un tiempo y luego carga la escena correspondiente para el jugador 2
+            StartCoroutine(WaitAndLoadScene("Prototype 1"));
         }
     }
 
-    private IEnumerator WaitAndLoadScene()
+    // Método para esperar y cargar la escena
+    private IEnumerator WaitAndLoadScene(string sceneName)
     {
         // Espera 3 segundos (puedes ajustar este tiempo)
         yield return new WaitForSeconds(3f);
 
-        // Carga la escena con el nombre que desees (asegúrate de que esté añadida en Build Settings)
-        SceneManager.LoadScene("Prototype 2"); // Cambia "NombreDeTuEscena" por el nombre real de la escena
+        // Carga la escena pasada como argumento
+        SceneManager.LoadScene(sceneName); // Carga la escena que le pases como parámetro
     }
 }

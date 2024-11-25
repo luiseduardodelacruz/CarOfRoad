@@ -4,22 +4,48 @@ using UnityEngine;
 
 public class CarOutBounds : MonoBehaviour
 {
-    private Vector3 initialPosition = new Vector3(-9.602f, 159.69f, -130f); 
-    private float resetYPosition = 150f;  
+    private float resetYPosition = 150f;  // Umbral de Y para detectar caída
+    private float previousYPosition;
+    private Vector3 initialPosition = new Vector3(-9.602f, 159.69f, -130f);  // Posición inicial
+    private Rigidbody carRigidbody;
 
+    void Start()
+    {
+        // Guardamos la posición inicial en Y
+        previousYPosition = transform.position.y;
 
-    
-    private bool hasReset = false;
+        // Obtén el componente Rigidbody si es que el carro tiene uno
+        carRigidbody = GetComponent<Rigidbody>();
+    }
 
-    
     void Update()
     {
-        
-        if (transform.position.y < resetYPosition && !hasReset)
+        // Detectamos si el carro ha caído por debajo del límite en Y
+        if (transform.position.y < resetYPosition)
         {
-            Debug.Log("¡El carro salió de los límites! Reiniciando posición.");
-            transform.position = initialPosition;  
-            hasReset = true; 
+            // Si la posición en Y está cayendo (la posición actual en Y es menor que la anterior)
+            if (transform.position.y < previousYPosition)
+            {
+                Debug.Log("¡El carro salió de los límites! Está cayendo.");
+
+                // Si hay un Rigidbody, desactivamos la gravedad temporalmente para evitar interferencias
+                if (carRigidbody != null)
+                {
+                    carRigidbody.isKinematic = true;  // Evita la interacción con la física
+                }
+
+                // Reiniciamos la posición del carro a la inicial
+                transform.position = initialPosition;
+
+                // Rehabilitamos la física
+                if (carRigidbody != null)
+                {
+                    carRigidbody.isKinematic = false;  // Restaura la física normal
+                }
+            }
         }
+
+        // Actualizamos la posición anterior de Y para la próxima comparación
+        previousYPosition = transform.position.y;
     }
 }

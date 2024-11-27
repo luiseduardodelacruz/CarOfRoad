@@ -1,0 +1,11 @@
+Model Information:
+* title:	Race drag Start and Finish Line
+* source:	https://sketchfab.com/3d-models/race-drag-start-and-finish-line-f30a73703bb74d1fa4beacf731d1baf6
+* author:	rohit143r (https://sketchfab.com/rohit143r)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Race drag Start and Finish Line" (https://sketchfab.com/3d-models/race-drag-start-and-finish-line-f30a73703bb74d1fa4beacf731d1baf6) by rohit143r (https://sketchfab.com/rohit143r) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

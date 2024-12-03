@@ -1,0 +1,8 @@
+Model Information:
+* title:	Traffic Barricade - 3D Asset
+* source:	https://sketchfab.com/3d-models/traffic-barricade-3d-asset-ed6482d7aa304bb38fc15d7036751b3a
+* author:	themaayur (https://sketchfab.com/themaayur)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
